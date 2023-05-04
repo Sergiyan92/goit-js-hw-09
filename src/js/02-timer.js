@@ -27,7 +27,7 @@ const options = {
       const timerInterval = setInterval(() => {
         const currentTime = new Date().getTime();
         const timeLeft = selectedDate.getTime() - currentTime; //
-        console.log(timeLeft);
+
         function convertMs(ms) {
           // Number of milliseconds per unit of time
           const second = 1000;
@@ -42,19 +42,19 @@ const options = {
           const minutes = Math.floor(((ms % day) % hour) / minute);
           // Remaining seconds
           const seconds = Math.floor((((ms % day) % hour) % minute) / second);
-          dayTime.textContent = `${days}`;
-          hoursTime.textContent = `${hours}`;
-          minutesTime.textContent = `${minutes}`;
-          secondsTime.textContent = `${seconds}`;
-          if (timeLeft < 0) {
+          dayTime.textContent = String(days).padStart(2, '0');
+          hoursTime.textContent = String(hours).padStart(2, '0');
+          minutesTime.textContent = String(minutes).padStart(2, '0');
+          secondsTime.textContent = String(seconds).padStart(2, '0');
+          if (timeLeft <= 0) {
             clearInterval(timerInterval);
-            dayTime.textContent = 00;
-            hoursTime.textContent = 00;
-            minutesTime.textContent = 00;
-            secondsTime.textContent = 00;
+            dayTime.textContent = '00';
+            hoursTime.textContent = '00';
+            minutesTime.textContent = '00';
+            secondsTime.textContent = '00';
           }
         }
-        console.log(convertMs(timeLeft));
+        convertMs(timeLeft);
       }, 1000);
     });
   },
